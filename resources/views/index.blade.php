@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Bem-vindo')
+@section('title', 'Home')
 
 @section('content')
     <div class="container h-100 d-flex justify-content-center align-items-center">
