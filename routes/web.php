@@ -13,4 +13,9 @@ Route::controller(TarefasController::class)->group(function (){
 Route::get('/tarefas','listarTarefas');
 
 Route::post('/incluir-tarefa', 'incluir');
+Route::delete('/excluir-tarefa/{id}', 'excluir');
+Route::put('/editar-tarefa/{id}', 'editar');
+Route::post('/ordenar-tarefa','reordernacaoDasTarefas');
+
+
 });
