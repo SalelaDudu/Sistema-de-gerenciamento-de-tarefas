@@ -11,13 +11,17 @@ class TarefasModel extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = "tarefas";
-
+    protected $fillable = [
+        'nome',
+        'custo',
+        'data_limite',
+        'ordem_apresentacao' 
+    ];
     public static function listarTarefas(){
-        return TarefasModel::select("*")->get();
+        return TarefasModel::select("*")->orderBy('ordem_apresentacao', 'asc')->get();
     }
-    
     public static function inserir($nome,$custo,$data_limite){
-        $posicao = TarefasModel::max('ordem_apresentacao') + 1;    
+        $posicao = TarefasModel::max('ordem_apresentacao') + 1;
         $tarefa = new TarefasModel();
         $tarefa->nome = $nome;
         $tarefa->custo = $custo;
@@ -39,9 +43,14 @@ class TarefasModel extends Model
         $tarefa->save();
     }
 
-    public static function reordernacaoDasTarefas(array $ordem)
+public static function reordernacaoDasTarefas(array $ordem)
     {
         DB::transaction(function () use ($ordem) {
+            foreach ($ordem as $idTarefa) {
+                static::where('id', $idTarefa)->update([
+                    'ordem_apresentacao' => DB::raw('ordem_apresentacao * -1') 
+                ]);
+            }
             foreach ($ordem as $posicaoIndex => $idTarefa) {
                 static::where('id', $idTarefa)->update([
                     'ordem_apresentacao' => $posicaoIndex + 1
