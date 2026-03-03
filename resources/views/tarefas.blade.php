@@ -6,7 +6,10 @@
 
 <style>
     .alerta-custo {
-        outline: 1px solid #fd7e14 !important;
+        border: 2px solid #fd7e14 !important;
+    }
+    .alerta-custo td {
+        background-color: #fff3cd !important;
     }
 </style>
 
@@ -61,7 +64,7 @@
                 <tfoot class="table-light">
                     <tr>
                         <td colspan="3" class="text-end fw-bold">Total:</td>
-                        <td colspan="3" class="fw-bold text-info" id="total-custo-rodape">R$ 0,00</td>
+                        <td colspan="3" class="fw-bold text-primary" id="total-custo-rodape">R$ 0,00</td>
                     </tr>
                 </tfoot>
             </table>
