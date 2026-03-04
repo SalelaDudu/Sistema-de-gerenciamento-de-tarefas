@@ -156,7 +156,6 @@ CREATE TABLE IF NOT EXISTS `database`.`tarefas` (
   `data_limite` DATE NOT NULL,
   `ordem_apresentacao` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `nome` (`nome` ASC) VISIBLE,
   UNIQUE INDEX `ordem_apresentacao` (`ordem_apresentacao` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 4

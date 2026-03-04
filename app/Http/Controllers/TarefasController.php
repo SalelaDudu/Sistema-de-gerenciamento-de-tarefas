@@ -12,16 +12,7 @@ class TarefasController extends Controller
     }
 
     public function incluir(Request $request){
-        // Validação
-        $validator = Validator::make($request->all(), [
-            'nome' => 'required|unique:tarefas,nome',],
-            ['nome.unique' => 'Erro - tarefas não podem conter nomes repetidos',]);
-                // caso de erro retona mensagem
-            if ($validator->fails()) {
-                return redirect()->back()
-                    ->withInput()
-                    ->with('error', $validator->errors()->first('nome'));
-                }
+
         TarefasModel::inserir($request->input('nome'),$request->input('custo'),$request->input('data_limite'));
         return redirect()->back()->with('success', 'Tarefa inserida com sucesso!');
 
